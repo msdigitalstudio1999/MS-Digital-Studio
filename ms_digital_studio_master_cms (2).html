@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Digital Studio - Indian Wedding Photography & Videography</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FFF7AD',
+                            300: '#F5D061',
+                            400: '#E5C158',
+                            500: '#D4AF37',
+                            600: '#AA820A',
+                            700: '#805F03',
+                        },
+                        dark: {
+                            900: '#09080B',
+                            800: '#121016',
+                            700: '#1C1924',
+                            600: '#2A2636'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #09080B;
+            color: #F3F4F6;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF7AD 0%, #D4AF37 50%, #AA820A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA820A 100%);
+        }
+        .glass-card {
+            background: rgba(18, 16, 22, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #121016;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-100 min-h-screen flex flex-col custom-scrollbar">
+
+    <!-- Top Announcement Bar -->
+    <div id="offerBanner" class="gold-gradient-bg text-black text-xs md:text-sm font-semibold py-2 px-4 text-center flex justify-between items-center">
+        <span id="bannerText" class="w-full text-center">🎉 Bookings Open for 2026-2027 Wedding Season! Special 15% Off on Pre-Wedding + Cinematic Package.</span>
+        <button onclick="document.getElementById('offerBanner').style.display='none'" class="text-black hover:opacity-75 font-bold px-2">✕</button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-dark-900/90 backdrop-blur-md border-b border-gold-500/20 px-4 lg:px-8 py-3 transition-all">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full gold-gradient-bg flex items-center justify-center text-black font-bold text-xl shadow-lg shadow-gold-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid font-bold fa-camera-retro"></i>
+                </div>
+                <div>
+                    <span id="navStudioName" class="font-serif text-xl font-bold tracking-wider gold-gradient-text block">MS DIGITAL STUDIO</span>
+                    <span id="navTagline" class="text-[10px] tracking-widest text-gray-400 block uppercase">Indian Wedding & Cinematic Films</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links (Desktop) -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#services" class="hover:text-gold-400 transition">Packages</a>
+                <a href="#portfolio" class="hover:text-gold-400 transition">Gallery & Reels</a>
+                <a href="#reviews" class="hover:text-gold-400 transition">Reviews</a>
+                <a href="#location" class="hover:text-gold-400 transition">Location</a>
+                <a href="#contact" class="hover:text-gold-400 transition">Contact</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="openAdminModal()" class="px-3 py-1.5 text-xs rounded-lg border border-gold-500/50 text-gold-400 hover:bg-gold-500 hover:text-black font-semibold transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Admin CMS</span>
+                </button>
+                <a id="navBookBtn" href="#contact" class="hidden sm:inline-flex px-4 py-2 text-xs font-bold rounded-lg gold-gradient-bg text-black hover:opacity-90 transition shadow-md shadow-gold-500/20">
+                    Book Date
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[85vh] flex items-center justify-center text-center px-4 py-20 overflow-hidden">
+        <!-- Background Overlay & Image -->
+        <div class="absolute inset-0 z-0">
+            <img id="heroBgImg" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1920&q=80" alt="Indian Wedding Photography" class="w-full h-full object-cover object-center filter brightness-40 scale-105 transition duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/60 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto space-y-6">
+            <span class="inline-block px-4 py-1.5 rounded-full border border-gold-500/40 bg-dark-800/80 text-gold-300 text-xs font-semibold uppercase tracking-widest backdrop-blur-md">
+                ✨ Award Winning Wedding Studio
+            </span>
+            <h1 id="heroTitle" class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-tight">
+                Capturing Royal <span class="gold-gradient-text italic">Indian Weddings</span> & Timeless Moments
+            </h1>
+            <p id="heroSubtitle" class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                From Varmala to Phere, Haldi smiles to Cinematic Trailers. We craft royal visual stories for your most cherished celebration.
+            </p>
+            <div class="flex flex-wrap justify-center items-center gap-4 pt-4">
+                <a href="#services" class="px-7 py-3.5 rounded-xl gold-gradient-bg text-black font-bold text-sm tracking-wide shadow-lg shadow-gold-500/25 hover:scale-105 transition">
+                    Explore Packages
+                </a>
+                <a href="#portfolio" class="px-7 py-3.5 rounded-xl bg-dark-800/80 border border-gold-500/40 text-white font-semibold text-sm hover:border-gold-400 transition backdrop-blur-md">
+                    Watch Photo & Reels
+                </a>
+            </div>
+            
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-3 gap-4 max-w-lg mx-auto pt-10 text-center border-t border-gold-500/20">
+                <div>
+                    <h4 class="font-serif text-2xl md:text-3xl font-bold gold-gradient-text">500+</h4>
+                    <p class="text-xs text-gray-400">Weddings Shot</p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-2xl md:text-3xl font-bold gold-gradient-text">10+</h4>
+                    <p class="text-xs text-gray-400">Years Experience</p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-2xl md:text-3xl font-bold gold-gradient-text">100%</h4>
+                    <p class="text-xs text-gray-400">Happy Couples</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Packages Section -->
+    <section id="services" class="py-20 px-4 max-w-7xl mx-auto w-full">
+        <div class="text-center space-y-3 mb-14">
+            <p class="text-gold-400 text-xs uppercase tracking-widest font-semibold">Wedding Shoot Packages</p>
+            <h2 class="font-serif text-3xl sm:text-5xl font-bold">Custom Wedding Solutions</h2>
+            <div class="w-24 h-1 gold-gradient-bg mx-auto rounded-full"></div>
+            <p class="text-gray-400 text-sm max-w-xl mx-auto">Choose or edit any package to fit your budget & functions</p>
+        </div>
+
+        <div id="servicesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Packages rendered dynamically -->
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-4 bg-dark-800/50 border-y border-gold-500/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-3 mb-12">
+                <p class="text-gold-400 text-xs uppercase tracking-widest font-semibold">Moments We Captured</p>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold">Indian Wedding Showcase & Reels</h2>
+                <div class="w-24 h-1 gold-gradient-bg mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Category Filters -->
+            <div id="portfolioFilter" class="flex flex-wrap justify-center gap-2 mb-10">
+                <button onclick="filterPortfolio('all')" class="px-4 py-2 text-xs font-semibold rounded-full bg-gold-500 text-black shadow-md">All Works</button>
+                <button onclick="filterPortfolio('Bridal')" class="px-4 py-2 text-xs font-semibold rounded-full bg-dark-700 text-gray-300 hover:text-white border border-gold-500/20">Bridal & Groom</button>
+                <button onclick="filterPortfolio('Rituals')" class="px-4 py-2 text-xs font-semibold rounded-full bg-dark-700 text-gray-300 hover:text-white border border-gold-500/20">Haldi & Mehndi</button>
+                <button onclick="filterPortfolio('Varmala')" class="px-4 py-2 text-xs font-semibold rounded-full bg-dark-700 text-gray-300 hover:text-white border border-gold-500/20">Varmala & Phere</button>
+                <button onclick="filterPortfolio('Video')" class="px-4 py-2 text-xs font-semibold rounded-full bg-dark-700 text-gray-300 hover:text-white border border-gold-500/20">Cinematic Reels</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div id="portfolioContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery items rendered dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Reviews Section -->
+    <section id="reviews" class="py-20 px-4 max-w-7xl mx-auto w-full">
+        <div class="text-center space-y-3 mb-14">
+            <p class="text-gold-400 text-xs uppercase tracking-widest font-semibold">Client Testimonials</p>
+            <h2 class="font-serif text-3xl sm:text-5xl font-bold">What Happy Couples Say</h2>
+            <div class="w-24 h-1 gold-gradient-bg mx-auto rounded-full"></div>
+        </div>
+
+        <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Reviews rendered dynamically -->
+        </div>
+    </section>
+
+    <!-- Location & Google Maps Section -->
+    <section id="location" class="py-20 px-4 bg-dark-800/40 border-t border-gold-500/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-3 mb-12">
+                <p class="text-gold-400 text-xs uppercase tracking-widest font-semibold">Visit Our Studio</p>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold">Location & Directions</h2>
+                <div class="w-24 h-1 gold-gradient-bg mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <div class="glass-card p-6 rounded-2xl space-y-6 lg:col-span-1 border border-gold-500/20">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl gold-gradient-bg flex items-center justify-center text-black text-xl font-bold shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-white mb-1">Studio Address</h3>
+                            <p id="displayAddress" class="text-sm text-gray-300 leading-relaxed">
+                                MS Digital Studio Lab, Ramgarh Road, Near Machali Mandi, Mohania, Kaimur District, Bihar 821109
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 pt-4 border-t border-gold-500/20">
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-phone text-gold-400"></i>
+                            <span id="displayPhone">+91 98765 43210</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-envelope text-gold-400"></i>
+                            <span id="displayEmail">contact@msdigitalstudio.com</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-gray-300">
+                            <i class="fa-solid fa-clock text-gold-400"></i>
+                            <span>10:00 AM - 08:30 PM (All Days Open)</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <a id="googleMapsDirectBtn" href="https://maps.app.goo.gl/dkJna5Va5e4NRhoZ8" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl gold-gradient-bg text-black font-bold text-sm shadow-md hover:opacity-90 transition">
+                            <i class="fa-solid fa-diamond-turn-right"></i>
+                            Open in Google Maps
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-card p-2 rounded-2xl lg:col-span-2 overflow-hidden h-[380px] lg:h-[420px] relative border border-gold-500/20 shadow-xl">
+                    <iframe id="mapsEmbedIframe" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.334139887711!2d83.6190!3d25.1760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e1e4da2fd5917%3A0xaa0a28fd4cb3014a!2sMS%20Digital%20Studio!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; filter: grayscale(20%) contrast(1.1) opacity(0.9);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        class="rounded-xl w-full h-full">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking / Contact Section -->
+    <section id="contact" class="py-20 px-4 max-w-5xl mx-auto w-full">
+        <div class="glass-card p-8 md:p-12 rounded-3xl border border-gold-500/30 shadow-2xl relative overflow-hidden">
+            <div class="text-center space-y-3 mb-10">
+                <p class="text-gold-400 text-xs uppercase tracking-widest font-semibold">Reserve Your Wedding Date</p>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold">Direct Booking & Inquiry</h2>
+                <p class="text-gray-400 text-sm">Send your details directly to our studio team on WhatsApp</p>
+            </div>
+
+            <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-2">Your Name *</label>
+                        <input type="text" id="custName" required placeholder="e.g. Rahul Sharma" class="w-full bg-dark-900 border border-gold-500/30 rounded-xl p-3 text-sm focus:border-gold-400 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-2">Mobile / WhatsApp Number *</label>
+                        <input type="tel" id="custPhone" required placeholder="e.g. +91 9876543210" class="w-full bg-dark-900 border border-gold-500/30 rounded-xl p-3 text-sm focus:border-gold-400 focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-2">Wedding / Event Date</label>
+                        <input type="date" id="custDate" class="w-full bg-dark-900 border border-gold-500/30 rounded-xl p-3 text-sm text-gray-200 focus:border-gold-400 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-300 mb-2">Select Package / Service</label>
+                        <select id="custPackage" class="w-full bg-dark-900 border border-gold-500/30 rounded-xl p-3 text-sm focus:border-gold-400 focus:outline-none text-gray-200">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-2">Event Location & Notes</label>
+                    <textarea id="custNotes" rows="3" placeholder="Tell us about your wedding venue or requirements..." class="w-full bg-dark-900 border border-gold-500/30 rounded-xl p-3 text-sm focus:border-gold-400 focus:outline-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl gold-gradient-bg text-black font-bold text-sm hover:opacity-90 transition flex items-center justify-center gap-2 shadow-lg shadow-gold-500/20">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    Send Booking Request via WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 border-t border-gold-500/20 py-12 px-4 mt-auto text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <span class="font-serif text-xl font-bold gold-gradient-text block">MS DIGITAL STUDIO</span>
+                <p class="text-xs text-gray-400">Premier Indian Wedding Photography & Cinematic Films</p>
+            </div>
+            <div class="flex gap-4 text-xl">
+                <a id="socialIg" href="#" target="_blank" class="w-10 h-10 rounded-full bg-dark-800 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition"><i class="fa-brands fa-instagram"></i></a>
+                <a id="socialYt" href="#" target="_blank" class="w-10 h-10 rounded-full bg-dark-800 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition"><i class="fa-brands fa-youtube"></i></a>
+                <a id="socialFb" href="#" target="_blank" class="w-10 h-10 rounded-full bg-dark-800 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-gold-500/10 mt-8 pt-6 text-center text-xs text-gray-500 flex justify-between items-center">
+            <span>© 2026 MS Digital Studio. All Rights Reserved.</span>
+            <button onclick="openAdminModal()" class="text-gold-400 hover:underline">Studio Admin Login</button>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- MASTER ADMIN CMS MODAL                     -->
+    <!-- ========================================== -->
+    <div id="adminModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-dark-800 border border-gold-500/40 w-full max-w-4xl max-h-[90vh] rounded-2xl flex flex-col shadow-2xl overflow-hidden">
+            
+            <!-- Modal Header -->
+            <div class="gold-gradient-bg text-black p-4 px-6 flex justify-between items-center shrink-0">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-lg"></i>
+                    <h3 class="font-serif font-bold text-lg">MS Digital Studio - Master Admin CMS</h3>
+                </div>
+                <button onclick="closeAdminModal()" class="font-bold text-xl hover:opacity-75">✕</button>
+            </div>
+
+            <!-- PIN Security Login Screen -->
+            <div id="adminPinScreen" class="p-8 text-center space-y-4 my-auto">
+                <i class="fa-solid fa-lock text-4xl text-gold-400"></i>
+                <h4 class="text-xl font-bold">Admin Security Passcode</h4>
+                <p class="text-xs text-gray-400">Enter your passcode to manage the studio CMS</p>
+                <div class="max-w-xs mx-auto flex gap-2">
+                    <input type="password" id="adminPinInput" placeholder="Enter Passcode" class="bg-dark-900 border border-gold-500/40 rounded-xl px-4 py-2 text-center text-lg tracking-widest w-full text-white focus:outline-none">
+                    <button onclick="verifyAdminPin()" class="px-5 py-2 gold-gradient-bg text-black font-bold rounded-xl text-sm hover:opacity-90">Verify</button>
+                </div>
+                <p id="pinErrorMsg" class="text-red-400 text-xs hidden">Incorrect Passcode. Please try again.</p>
+            </div>
+
+            <!-- Admin Control Tabs & Panel Content -->
+            <div id="adminPanelContent" class="hidden flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8">
+                
+                <!-- CMS Navigation Tabs -->
+                <div class="flex flex-wrap gap-2 border-b border-gold-500/20 pb-3">
+                    <button onclick="switchAdminTab('tabHero')" class="admin-tab-btn px-4 py-2 text-xs font-bold rounded-lg bg-gold-500 text-black">Hero & Banner</button>
+                    <button onclick="switchAdminTab('tabPackages')" class="admin-tab-btn px-4 py-2 text-xs font-bold rounded-lg bg-dark-700 text-gray-300">Packages</button>
+                    <button onclick="switchAdminTab('tabPortfolio')" class="admin-tab-btn px-4 py-2 text-xs font-bold rounded-lg bg-dark-700 text-gray-300">Portfolio & Reels</button>
+                    <button onclick="switchAdminTab('tabReviews')" class="admin-tab-btn px-4 py-2 text-xs font-bold rounded-lg bg-dark-700 text-gray-300">Reviews</button>
+                    <button onclick="switchAdminTab('tabInfo')" class="admin-tab-btn px-4 py-2 text-xs font-bold rounded-lg bg-dark-700 text-gray-300">Contact & Maps</button>
+                    <button onclick="switchAdminTab('tabSecurity')" class="admin-tab-btn px-4 py-2 text-xs font-bold rounded-lg bg-dark-700 text-gray-300">🔒 Security & PIN Settings</button>
+                </div>
+
+                <!-- TAB 1: Hero & Offer Banner -->
+                <div id="tabHero" class="admin-tab-section space-y-4">
+                    <h4 class="text-gold-400 text-sm font-bold border-b border-gold-500/20 pb-2">Hero Section Customization</h4>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Top Banner Offer Text</label>
+                        <input type="text" id="editBannerText" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2.5 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Hero Main Title</label>
+                        <input type="text" id="editHeroTitle" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2.5 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Hero Subtitle</label>
+                        <textarea id="editHeroSubtitle" rows="2" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2.5 text-xs text-white"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Hero Background Image URL</label>
+                        <input type="text" id="editHeroBgImg" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2.5 text-xs text-white">
+                    </div>
+                </div>
+
+                <!-- TAB 2: Wedding Packages -->
+                <div id="tabPackages" class="admin-tab-section hidden space-y-6">
+                    <div class="flex justify-between items-center border-b border-gold-500/20 pb-2">
+                        <h4 class="text-gold-400 text-sm font-bold">Manage Packages & Deliverables</h4>
+                        <button onclick="addNewPackageItem()" class="px-3 py-1.5 text-xs font-bold bg-gold-500 text-black rounded-lg">+ Add New Package</button>
+                    </div>
+                    <div id="adminPackagesList" class="space-y-4"></div>
+                </div>
+
+                <!-- TAB 3: Portfolio Photos & Reels -->
+                <div id="tabPortfolio" class="admin-tab-section hidden space-y-6">
+                    <div class="flex justify-between items-center border-b border-gold-500/20 pb-2">
+                        <h4 class="text-gold-400 text-sm font-bold">Manage Wedding Gallery & Videos</h4>
+                        <button onclick="addNewPortfolioItem()" class="px-3 py-1.5 text-xs font-bold bg-gold-500 text-black rounded-lg">+ Add Photo / Video</button>
+                    </div>
+                    <div id="adminPortfolioList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </div>
+
+                <!-- TAB 4: Reviews -->
+                <div id="tabReviews" class="admin-tab-section hidden space-y-6">
+                    <div class="flex justify-between items-center border-b border-gold-500/20 pb-2">
+                        <h4 class="text-gold-400 text-sm font-bold">Client Reviews</h4>
+                        <button onclick="addNewReviewItem()" class="px-3 py-1.5 text-xs font-bold bg-gold-500 text-black rounded-lg">+ Add Review</button>
+                    </div>
+                    <div id="adminReviewsList" class="space-y-4"></div>
+                </div>
+
+                <!-- TAB 5: Location, Address & Contact Details -->
+                <div id="tabInfo" class="admin-tab-section hidden space-y-4">
+                    <h4 class="text-gold-400 text-sm font-bold border-b border-gold-500/20 pb-2">Contact & Google Location Settings</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">WhatsApp Phone Number</label>
+                            <input type="text" id="editPhone" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Email Address</label>
+                            <input type="text" id="editEmail" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2 text-xs text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Studio Full Address Text</label>
+                        <textarea id="editAddress" rows="2" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2 text-xs text-white"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Google Maps Link</label>
+                        <input type="text" id="editMapsLink" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2 text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-400 mb-1">Google Maps Embed URL</label>
+                        <input type="text" id="editMapsEmbed" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2 text-xs text-white">
+                    </div>
+                </div>
+
+                <!-- TAB 6: Security & PIN Change Settings -->
+                <div id="tabSecurity" class="admin-tab-section hidden space-y-4">
+                    <h4 class="text-gold-400 text-sm font-bold border-b border-gold-500/20 pb-2">Admin Security Passcode Settings</h4>
+                    <div class="glass-card p-6 rounded-xl border border-gold-500/30 space-y-4 max-w-md">
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">Current Passcode / PIN *</label>
+                            <input type="password" id="changePinCurrent" placeholder="Current PIN" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">New Passcode / PIN *</label>
+                            <input type="password" id="changePinNew" placeholder="New PIN" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">Confirm New Passcode / PIN *</label>
+                            <input type="password" id="changePinConfirm" placeholder="Confirm New PIN" class="w-full bg-dark-900 border border-gold-500/30 rounded-lg p-2 text-xs text-white">
+                        </div>
+                        <p id="changePinStatusMsg" class="text-xs hidden"></p>
+                        <button onclick="handleChangePinSubmit()" class="w-full py-2.5 gold-gradient-bg text-black font-bold rounded-lg text-xs hover:opacity-90 transition">
+                            Update Admin Security PIN
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Actions -->
+            <div id="adminPanelFooter" class="p-4 bg-dark-900 border-t border-gold-500/20 flex justify-between items-center shrink-0 hidden">
+                <button onclick="resetDataToDefault()" class="text-xs text-red-400 hover:text-red-300 font-semibold underline">Reset All to Default</button>
+                <div class="flex gap-2">
+                    <button onclick="closeAdminModal()" class="px-4 py-2 text-xs font-semibold rounded-lg bg-dark-700 text-gray-300">Cancel</button>
+                    <button onclick="saveAdminChanges()" class="px-5 py-2 text-xs font-bold rounded-lg gold-gradient-bg text-black shadow-md">Save All Changes</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Application Logic Script -->
+    <script>
+        // Default Studio Data
+        const defaultAppData = {
+            adminPin: "0000",
+            bannerText: "🎉 Bookings Open for 2026-2027 Wedding Season! Special 15% Off on Pre-Wedding + Cinematic Package.",
+            heroTitle: "Capturing Royal Indian Weddings & Timeless Moments",
+            heroSubtitle: "From Varmala to Phere, Haldi smiles to Cinematic Trailers. We craft royal visual stories for your most cherished celebration.",
+            heroBgImg: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1920&q=80",
+            phone: "+91 7739108870",
+            email: "msdigitalstudiolab@gmail.com",
+            address: "MS Digital Studio Lab, Ramgarh Road, Near Machali Mandi, Mohania, Kaimur District, Bihar 821109",
+            mapsLink: "https://maps.app.goo.gl/dkJna5Va5e4NRhoZ8",
+            mapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.334139887711!2d83.6190!3d25.1760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e1e4da2fd5917%3A0xaa0a28fd4cb3014a!2sMS%20Digital%20Studio!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin",
+            socials: {
+                ig: "https://instagram.com",
+                yt: "https://youtube.com",
+                fb: "https://facebook.com"
+            },
+            packages: [
+                {
+                    id: "pkg1",
+                    badge: "POPULAR",
+                    title: "Royal Wedding Combo",
+                    price: "45,000",
+                    img: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80",
+                    deliverables: [
+                        "2 Days Coverage (Haldi, Mehndi & Marriage)",
+                        "Traditional Photography + Full HD Videography",
+                        "1 Premium Canvera Photobook Album (30 Sheets)",
+                        "Drone Aerial Shoot (Varmala & Entry)",
+                        "High Quality Raw Photos in Pen Drive"
+                    ]
+                },
+                {
+                    id: "pkg2",
+                    badge: "BEST VALUE",
+                    title: "Cinematic Luxury Package",
+                    price: "75,000",
+                    img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
+                    deliverables: [
+                        "3 Days Coverage (Pre-Wedding + All Functions)",
+                        "Candid Photography + Cinematic Teaser (3-5 min)",
+                        "2 Premium Velvet Photobook Albums",
+                        "Dual 4K Drone Aerial Shots",
+                        "Live Youtube Streaming Option"
+                    ]
+                }
+            ],
+            portfolio: [
+                {
+                    id: "port1",
+                    title: "Royal Bride Portrait",
+                    category: "Bridal",
+                    img: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    id: "port2",
+                    title: "Varmala Royal Moment",
+                    category: "Varmala",
+                    img: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80"
+                }
+            ],
+            reviews: [
+                {
+                    id: "rev1",
+                    name: "Anand & Priya Sharma",
+                    event: "Wedding in Mohania",
+                    rating: 5,
+                    text: "MS Digital Studio captured our wedding so beautifully! The drone entry shot and cinematic video album exceeded our expectations."
+                }
+            ]
+        };
+
+        // App State loaded from localStorage
+        let appData = JSON.parse(localStorage.getItem('ms_digital_studio_data')) || defaultAppData;
+
+        // Ensure PIN field exists in legacy data
+        if (!appData.adminPin) {
+            appData.adminPin = "1234";
+        }
+
+        // Render Page Content
+        function renderSiteContent() {
+            document.getElementById('bannerText').innerText = appData.bannerText;
+            document.getElementById('heroTitle').innerHTML = appData.heroTitle;
+            document.getElementById('heroSubtitle').innerText = appData.heroSubtitle;
+            document.getElementById('heroBgImg').src = appData.heroBgImg;
+
+            document.getElementById('displayAddress').innerText = appData.address;
+            document.getElementById('displayPhone').innerText = appData.phone;
+            document.getElementById('displayEmail').innerText = appData.email;
+            document.getElementById('googleMapsDirectBtn').href = appData.mapsLink;
+            if (appData.mapsEmbed) {
+                document.getElementById('mapsEmbedIframe').src = appData.mapsEmbed;
+            }
+
+            document.getElementById('socialIg').href = appData.socials.ig || '#';
+            document.getElementById('socialYt').href = appData.socials.yt || '#';
+            document.getElementById('socialFb').href = appData.socials.fb || '#';
+
+            renderPackagesUI();
+            renderPortfolioUI('all');
+            renderReviewsUI();
+            populatePackageDropdown();
+        }
+
+        function renderPackagesUI() {
+            const container = document.getElementById('servicesContainer');
+            container.innerHTML = appData.packages.map(pkg => `
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between border border-gold-500/20 hover:border-gold-500/50 transition duration-300 group shadow-xl">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="${pkg.img}" alt="${pkg.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            ${pkg.badge ? `<span class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-bold gold-gradient-bg text-black uppercase tracking-wider">${pkg.badge}</span>` : ''}
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-2xl font-bold text-white mb-2">${pkg.title}</h3>
+                            <div class="flex items-baseline gap-1 my-4">
+                                <span class="text-xs text-gold-400 font-semibold">₹</span>
+                                <span class="text-3xl font-bold font-serif gold-gradient-text">${pkg.price}</span>
+                                <span class="text-xs text-gray-400">/ Complete Package</span>
+                            </div>
+                            <ul class="space-y-2.5 text-xs text-gray-300 my-6">
+                                ${pkg.deliverables.map(item => `
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-circle-check text-gold-400 mt-0.5"></i>
+                                        <span>${item}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="selectPackageForBooking('${pkg.title}')" class="w-full py-3 rounded-xl border border-gold-500/40 text-gold-400 font-bold text-xs hover:bg-gold-500 hover:text-black transition flex items-center justify-center gap-2">
+                            <span>Book This Package</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPortfolioUI(category = 'all') {
+            const container = document.getElementById('portfolioContainer');
+            const items = category === 'all' 
+                ? appData.portfolio 
+                : appData.portfolio.filter(item => item.category === category);
+
+            container.innerHTML = items.map(item => `
+                <div class="glass-card rounded-2xl overflow-hidden border border-gold-500/20 group relative">
+                    ${item.type === 'video' ? `
+                        <div class="aspect-video w-full">
+                            <iframe src="${item.videoUrl}" class="w-full h-full rounded-2xl" allowfullscreen></iframe>
+                        </div>
+                    ` : `
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                                <div>
+                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] gold-gradient-bg text-black font-bold uppercase">${item.category}</span>
+                                    <h4 class="font-serif font-bold text-white text-lg mt-1">${item.title}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    `}
+                </div>
+            `).join('');
+        }
+
+        function filterPortfolio(category) {
+            renderPortfolioUI(category);
+        }
+
+        function renderReviewsUI() {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = appData.reviews.map(rev => `
+                <div class="glass-card p-6 rounded-2xl border border-gold-500/20 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-gold-400 gap-1 text-sm mb-3">
+                            ${Array(rev.rating).fill('<i class="fa-solid fa-star"></i>').join('')}
+                        </div>
+                        <p class="text-xs text-gray-300 italic leading-relaxed mb-4">"${rev.text}"</p>
+                    </div>
+                    <div class="border-t border-gold-500/10 pt-3">
+                        <h4 class="font-serif font-bold text-sm text-white">${rev.name}</h4>
+                        <span class="text-[10px] text-gold-400">${rev.event}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function populatePackageDropdown() {
+            const select = document.getElementById('custPackage');
+            select.innerHTML = appData.packages.map(p => `
+                <option value="${p.title}">${p.title} (₹${p.price})</option>
+            `).join('') + '<option value="Custom Photography Requirements">Custom Requirements / Other</option>';
+        }
+
+        function selectPackageForBooking(pkgTitle) {
+            document.getElementById('custPackage').value = pkgTitle;
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const date = document.getElementById('custDate').value;
+            const pkg = document.getElementById('custPackage').value;
+            const notes = document.getElementById('custNotes').value;
+
+            const cleanPhone = appData.phone.replace(/[^0-9]/g, '');
+
+            const msg = `*NEW WEDDING SHOOT BOOKING INQUIRY*%0A%0A` +
+                `*Name:* ${name}%0A` +
+                `*Phone:* ${phone}%0A` +
+                `*Event Date:* ${date || 'To be decided'}%0A` +
+                `*Selected Package:* ${pkg}%0A` +
+                `*Notes:* ${notes}%0A%0A` +
+                `Sent via MS Digital Studio Website`;
+
+            window.open(`https://wa.me/${cleanPhone}?text=${msg}`, '_blank');
+        }
+
+        // ADMIN CMS & PIN VERIFICATION
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.remove('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.add('hidden');
+        }
+
+        function verifyAdminPin() {
+            const pinInput = document.getElementById('adminPinInput').value;
+            if (pinInput === appData.adminPin) {
+                document.getElementById('adminPinScreen').classList.add('hidden');
+                document.getElementById('adminPanelContent').classList.remove('hidden');
+                document.getElementById('adminPanelFooter').classList.remove('hidden');
+                loadAdminFormData();
+            } else {
+                document.getElementById('pinErrorMsg').classList.remove('hidden');
+            }
+        }
+
+        // Change Admin Passcode / PIN Logic
+        function handleChangePinSubmit() {
+            const currentPin = document.getElementById('changePinCurrent').value;
+            const newPin = document.getElementById('changePinNew').value;
+            const confirmPin = document.getElementById('changePinConfirm').value;
+            const statusMsg = document.getElementById('changePinStatusMsg');
+
+            statusMsg.classList.remove('hidden', 'text-green-400', 'text-red-400');
+
+            if (currentPin !== appData.adminPin) {
+                statusMsg.innerText = "❌ Current passcode is incorrect.";
+                statusMsg.classList.add('text-red-400');
+                return;
+            }
+
+            if (!newPin || newPin.trim().length < 3) {
+                statusMsg.innerText = "⚠️ New passcode must be at least 3 characters long.";
+                statusMsg.classList.add('text-red-400');
+                return;
+            }
+
+            if (newPin !== confirmPin) {
+                statusMsg.innerText = "❌ New passcode and confirm passcode do not match.";
+                statusMsg.classList.add('text-red-400');
+                return;
+            }
+
+            // Update Passcode
+            appData.adminPin = newPin.trim();
+            localStorage.setItem('ms_digital_studio_data', JSON.stringify(appData));
+
+            // Clear inputs
+            document.getElementById('changePinCurrent').value = '';
+            document.getElementById('changePinNew').value = '';
+            document.getElementById('changePinConfirm').value = '';
+
+            statusMsg.innerText = "✅ Passcode changed successfully! Use your new PIN for future logins.";
+            statusMsg.classList.add('text-green-400');
+        }
+
+        function switchAdminTab(tabId) {
+            document.querySelectorAll('.admin-tab-section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-gold-500', 'text-black');
+                btn.classList.add('bg-dark-700', 'text-gray-300');
+            });
+            event.currentTarget.classList.remove('bg-dark-700', 'text-gray-300');
+            event.currentTarget.classList.add('bg-gold-500', 'text-black');
+        }
+
+        function loadAdminFormData() {
+            document.getElementById('editBannerText').value = appData.bannerText;
+            document.getElementById('editHeroTitle').value = appData.heroTitle;
+            document.getElementById('editHeroSubtitle').value = appData.heroSubtitle;
+            document.getElementById('editHeroBgImg').value = appData.heroBgImg;
+
+            document.getElementById('editPhone').value = appData.phone;
+            document.getElementById('editEmail').value = appData.email;
+            document.getElementById('editAddress').value = appData.address;
+            document.getElementById('editMapsLink').value = appData.mapsLink;
+            document.getElementById('editMapsEmbed').value = appData.mapsEmbed || '';
+
+            renderAdminPackages();
+            renderAdminPortfolio();
+            renderAdminReviews();
+        }
+
+        function renderAdminPackages() {
+            const list = document.getElementById('adminPackagesList');
+            list.innerHTML = appData.packages.map((pkg, idx) => `
+                <div class="bg-dark-900 p-4 rounded-xl border border-gold-500/30 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-gold-400">Package #${idx + 1}</span>
+                        <button onclick="removePackageItem(${idx})" class="text-xs text-red-400 hover:underline">Delete Package</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <input type="text" value="${pkg.title}" onchange="appData.packages[${idx}].title=this.value" placeholder="Title" class="bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                        <input type="text" value="${pkg.price}" onchange="appData.packages[${idx}].price=this.value" placeholder="Price ₹" class="bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                        <input type="text" value="${pkg.badge || ''}" onchange="appData.packages[${idx}].badge=this.value" placeholder="Badge (POPULAR)" class="bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                    </div>
+                    <input type="text" value="${pkg.img}" onchange="appData.packages[${idx}].img=this.value" placeholder="Cover Image URL" class="w-full bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                    <input type="text" value="${pkg.deliverables.join(', ')}" onchange="appData.packages[${idx}].deliverables=this.value.split(',').map(s=>s.trim())" class="w-full bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                </div>
+            `).join('');
+        }
+
+        function addNewPackageItem() {
+            appData.packages.push({
+                id: 'pkg_' + Date.now(),
+                badge: 'NEW',
+                title: 'New Wedding Package',
+                price: '30,000',
+                img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
+                deliverables: ['1 Day Shooting', 'HD Video', 'Photo Album']
+            });
+            renderAdminPackages();
+        }
+
+        function removePackageItem(idx) {
+            appData.packages.splice(idx, 1);
+            renderAdminPackages();
+        }
+
+        function renderAdminPortfolio() {
+            const list = document.getElementById('adminPortfolioList');
+            list.innerHTML = appData.portfolio.map((item, idx) => `
+                <div class="bg-dark-900 p-3 rounded-xl border border-gold-500/30 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-gold-400">Media #${idx + 1}</span>
+                        <button onclick="removePortfolioItem(${idx})" class="text-xs text-red-400 hover:underline">Delete</button>
+                    </div>
+                    <input type="text" value="${item.title}" onchange="appData.portfolio[${idx}].title=this.value" placeholder="Title" class="w-full bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                    <div class="grid grid-cols-2 gap-2">
+                        <select onchange="appData.portfolio[${idx}].category=this.value" class="bg-dark-800 border border-gold-500/20 rounded p-1.5 text-xs text-white">
+                            <option value="Bridal" ${item.category === 'Bridal' ? 'selected' : ''}>Bridal</option>
+                            <option value="Rituals" ${item.category === 'Rituals' ? 'selected' : ''}>Rituals</option>
+                            <option value="Varmala" ${item.category === 'Varmala' ? 'selected' : ''}>Varmala</option>
+                            <option value="Video" ${item.category === 'Video' ? 'selected' : ''}>Video / Reel</option>
+                        </select>
+                        <select onchange="appData.portfolio[${idx}].type=this.value; renderAdminPortfolio()" class="bg-dark-800 border border-gold-500/20 rounded p-1.5 text-xs text-white">
+                            <option value="image" ${item.type !== 'video' ? 'selected' : ''}>Image</option>
+                            <option value="video" ${item.type === 'video' ? 'selected' : ''}>Video Embed</option>
+                        </select>
+                    </div>
+                    ${item.type === 'video' ? `
+                        <input type="text" value="${item.videoUrl || ''}" onchange="appData.portfolio[${idx}].videoUrl=this.value" placeholder="Video Embed URL" class="w-full bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                    ` : `
+                        <input type="text" value="${item.img}" onchange="appData.portfolio[${idx}].img=this.value" placeholder="Image URL" class="w-full bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                    `}
+                </div>
+            `).join('');
+        }
+
+        function addNewPortfolioItem() {
+            appData.portfolio.push({
+                id: 'port_' + Date.now(),
+                title: 'New Wedding Shot',
+                category: 'Bridal',
+                img: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80'
+            });
+            renderAdminPortfolio();
+        }
+
+        function removePortfolioItem(idx) {
+            appData.portfolio.splice(idx, 1);
+            renderAdminPortfolio();
+        }
+
+        function renderAdminReviews() {
+            const list = document.getElementById('adminReviewsList');
+            list.innerHTML = appData.reviews.map((rev, idx) => `
+                <div class="bg-dark-900 p-3 rounded-xl border border-gold-500/30 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-gold-400">Review #${idx + 1}</span>
+                        <button onclick="removeReviewItem(${idx})" class="text-xs text-red-400 hover:underline">Delete</button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" value="${rev.name}" onchange="appData.reviews[${idx}].name=this.value" placeholder="Couple Name" class="bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                        <input type="text" value="${rev.event}" onchange="appData.reviews[${idx}].event=this.value" placeholder="Event Location/Type" class="bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">
+                    </div>
+                    <textarea onchange="appData.reviews[${idx}].text=this.value" rows="2" class="w-full bg-dark-800 border border-gold-500/20 rounded p-2 text-xs text-white">${rev.text}</textarea>
+                </div>
+            `).join('');
+        }
+
+        function addNewReviewItem() {
+            appData.reviews.push({
+                id: 'rev_' + Date.now(),
+                name: 'Happy Couple',
+                event: 'Wedding Event',
+                rating: 5,
+                text: 'Awesome wedding photography service!'
+            });
+            renderAdminReviews();
+        }
+
+        function removeReviewItem(idx) {
+            appData.reviews.splice(idx, 1);
+            renderAdminReviews();
+        }
+
+        function saveAdminChanges() {
+            appData.bannerText = document.getElementById('editBannerText').value;
+            appData.heroTitle = document.getElementById('editHeroTitle').value;
+            appData.heroSubtitle = document.getElementById('editHeroSubtitle').value;
+            appData.heroBgImg = document.getElementById('editHeroBgImg').value;
+
+            appData.phone = document.getElementById('editPhone').value;
+            appData.email = document.getElementById('editEmail').value;
+            appData.address = document.getElementById('editAddress').value;
+            appData.mapsLink = document.getElementById('editMapsLink').value;
+            appData.mapsEmbed = document.getElementById('editMapsEmbed').value;
+
+            localStorage.setItem('ms_digital_studio_data', JSON.stringify(appData));
+            renderSiteContent();
+            closeAdminModal();
+        }
+
+        function resetDataToDefault() {
+            appData = JSON.parse(JSON.stringify(defaultAppData));
+            localStorage.removeItem('ms_digital_studio_data');
+            renderSiteContent();
+            loadAdminFormData();
+        }
+
+        window.onload = function() {
+            renderSiteContent();
+        }
+    </script>
+</body>
+</html>
