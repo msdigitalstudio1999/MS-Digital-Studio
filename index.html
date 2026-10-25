@@ -499,7 +499,7 @@
     <script>
         // Default Studio Data
         const defaultAppData = {
-            adminPin: "0000",
+            adminPin: "1988",
             bannerText: "🎉 Bookings Open for 2026-2027 Wedding Season! Special 15% Off on Pre-Wedding + Cinematic Package.",
             heroTitle: "Capturing Royal Indian Weddings & Timeless Moments",
             heroSubtitle: "From Varmala to Phere, Haldi smiles to Cinematic Trailers. We craft royal visual stories for your most cherished celebration.",
@@ -936,14 +936,14 @@
             appData.mapsLink = document.getElementById('editMapsLink').value;
             appData.mapsEmbed = document.getElementById('editMapsEmbed').value;
 
-            localStorage.setItem('ms_digital_studio_data', JSON.stringify(appData));
+            localStorage.setItem('ms_digital_studio_lab_data', JSON.stringify(appData));
             renderSiteContent();
             closeAdminModal();
         }
 
         function resetDataToDefault() {
             appData = JSON.parse(JSON.stringify(defaultAppData));
-            localStorage.removeItem('ms_digital_studio_data');
+            localStorage.removeItem('ms_digital_studio_lab_data');
             renderSiteContent();
             loadAdminFormData();
         }
